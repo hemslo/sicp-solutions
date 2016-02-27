@@ -1,4 +1,5 @@
-; The following procedure computes a math- ematical function called Ackermann’s function.
+; The following procedure computes a math- ematical function called Ackermann’s
+; function.
 
 (define (A x y)
   (cond ((= y 0) 0)
@@ -22,7 +23,9 @@
 (define (h n) (A 2 n))
 (define (k n) (* 5 n n))
 
-; Give concise mathematical definitions for the functions computed by the procedures f, g, and h for positive integer values of n. For example, (k n) computes 5n^2.
+; Give concise mathematical definitions for the functions computed by the
+; procedures f, g, and h for positive integer values of n. For example, (k n)
+; computes 5n^2.
 
 ; (f n) = 2n
 ; (g n) = 2 ^ n
