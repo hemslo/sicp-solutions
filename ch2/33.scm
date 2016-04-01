@@ -1,7 +1,7 @@
 ; Fill in the missing expressions to complete the following definitions of some
 ; basic list-manipulation operations as accumulations:
 
-(define accumulate fold)
+(define accumulate fold-right)
 
 (define (map p sequence)
   (accumulate (lambda (x y) (cons (p x) y)) '() sequence))
