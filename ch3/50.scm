@@ -1,0 +1,9 @@
+; Complete the following definition, which generalizes stream-map to allow
+; procedures that take multiple arguments, analogous to map in Section 2.2.1,
+; Footnote 12.
+
+(define (stream-map proc . argstreams)
+  (if (stream-null? (car argstreams))
+      the-empty-stream
+      (cons-stream (apply proc (map stream-car argstreams))
+                   (apply stream-map (cons proc (map stream-cdr argstreams))))))
