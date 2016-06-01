@@ -1,0 +1,27 @@
+; Write an ordinary Scheme program to solve the multiple dwelling puzzle.
+
+(define (permutation items)
+  (if (null? items)
+      '(())
+      (apply append
+             (map (lambda (e)
+                    (map (lambda (permutations) (cons e permutations))
+                         (permutation (delete e items))))
+                  items))))
+
+(define (multiple-dwelling)
+  (map (lambda (floors) (map list '(baker cooper fletcher miller smith) floors))
+       (filter (lambda (floors)
+                 (let ((baker (list-ref floors 0))
+                       (cooper (list-ref floors 1))
+                       (fletcher (list-ref floors 2))
+                       (miller (list-ref floors 3))
+                       (smith (list-ref floors 4)))
+                   (and (not (= baker 5))
+                        (not (= cooper 1))
+                        (not (= fletcher 5))
+                        (not (= fletcher 1))
+                        (> miller cooper)
+                        (not (= (abs (- smith fletcher)) 1))
+                        (not (= (abs (- fletcher cooper)) 1)))))
+               (permutation (list 1 2 3 4 5)))))
