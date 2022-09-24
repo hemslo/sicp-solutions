@@ -11,7 +11,7 @@ function test(x, y) {
 
 /*
 Then he evaluates the statement
-*/
+ */
 
 test(0, p());
 
