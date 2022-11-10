@@ -1,3 +1,5 @@
+#lang sicp
+
 ; There is a clever algorithm for computing the Fibonacci numbers in a
 ; logarithmic number of steps. Recall the transformation of the state variables
 ; a and b in the fib-iter process of Section 1.2.2: a ← a + b and b ← a. Call
@@ -13,6 +15,8 @@
 ; transformations, and thus we can compute Tn using successive squaring, as in
 ; the fast-expt procedure. Put this all together to complete the following
 ; procedure, which runs in a logarithmic number of steps:
+
+(define (square x) (* x x))
 
 (define (fib n)
   (fib-iter 1 0 0 1 n))
