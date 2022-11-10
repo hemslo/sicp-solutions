@@ -1,3 +1,5 @@
+#lang sicp
+
 ; Design a procedure that evolves an iterative exponentiation process that uses
 ; successive squaring and uses a logarithmic number of steps, as does fast-expt.
 ; (Hint: Using the observation that (b ^ (n / 2)) ^ 2 = (b ^ 2) ^ (n/2), keep,
@@ -8,6 +10,8 @@
 ; general, the technique of defining an invariant quantity that remains
 ; unchanged from state to state is a powerful way to think about the design of
 ; iterative algorithms.)
+
+(define (square x) (* x x))
 
 (define (fast-expt b n)
   (define (iter a b n)
