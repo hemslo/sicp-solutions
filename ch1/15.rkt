@@ -1,3 +1,5 @@
+#lang sicp
+
 ; The sine of an angle (specified in radians) can be computed by making use of
 ; the approximation sin x ≈ x if x is sufficiently small, and the trigonometric
 ; identity
@@ -15,9 +17,9 @@
 
 ; a. How many times is the procedure p applied when(sine 12.15) is evaluated?
 (sin 12.15)
-(p (sine (4.05)))
-(p (p (sine (1.35)))
-(p (p (p (sine (0.45))))
+(p (sine 4.05))
+(p (p (sine 1.35)))
+(p (p (p (sine 0.45))))
 (p (p (p (p (sine 0.15)))))
 (p (p (p (p (p (sine 0.05))))))
 (p (p (p (p (p 0.05)))))
