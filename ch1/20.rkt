@@ -1,3 +1,5 @@
+#lang sicp
+
 ; The process that a procedure generates is of course dependent on the rules
 ; used by the interpreter. As an example, consider the iterative gcd procedure
 ; given above. Suppose we were to interpret this procedure using normal-order
