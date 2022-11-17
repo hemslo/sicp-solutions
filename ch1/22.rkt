@@ -1,3 +1,5 @@
+#lang racket
+
 ; Most Lisp implementations include a primitive called real-time-clock that returns an
 ; integer that specifies the amount of time the system has been running
 ; (measured, for example, in microseconds). The following timed-prime-test
@@ -8,15 +10,15 @@
 (define (timed-prime-test n)
   (newline)
   (display n)
-  (start-prime-test n (real-time-clock)))
+  (start-prime-test n (current-inexact-milliseconds)))
 
 (define (start-prime-test n start-time)
-  (if (prime? n)
-    (report-prime (- (real-time-clock) start-time))))
+  (if (prime? n) (report-prime (- (current-inexact-milliseconds) start-time)) #f))
 
 (define (report-prime elapsed-time)
   (display " *** ")
-  (display elapsed-time))
+  (display elapsed-time)
+  #t)
 
 ; Using this procedure, write a procedure search-for-primes that checks the
 ; primality of consecutive odd integers in a specified range. Use your procedure
@@ -31,6 +33,8 @@
 
 (define (smallest-divisor n) (find-divisor n 2))
 
+(define (square n) (* n n))
+
 (define (find-divisor n test-divisor)
   (cond ((> (square test-divisor) n) n)
         ((divides? test-divisor n) test-divisor)
@@ -41,9 +45,13 @@
 (define (prime? n)
   (= n (smallest-divisor n)))
 
-(define (search-for-primes first end)
-  (define (iter curr end)
-    (cond ((<= curr end)
-           (timed-prime-test curr)
-           (iter (+ 2 curr) end))))
-  (iter (if (even? first) (+ 1 first) first) end))
+(define (search-for-primes n count)
+  (define (iter i c)
+    (if (> c 0)
+        (if (timed-prime-test i)
+           (iter (+ i 2) (- c 1))
+           (iter (+ i 2) c))
+         (void)))
+  (iter (if (even? n) (+ 1 n) n) count))
+
+(search-for-primes 10000 3)

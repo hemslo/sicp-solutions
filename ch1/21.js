@@ -1,3 +1,7 @@
+/*
+Use the smallest_divisor function to find the smallest divisor of each of the following numbers: 199, 1999, 19999.
+ */
+
 function square(x) {
     return x * x;
 }
