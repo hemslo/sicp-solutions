@@ -1,3 +1,5 @@
+#lang sicp
+
 ; One variant of the Fermat test that cannot be fooled is called the
 ; Miller-Rabin test (Miller 1976; Rabin 1980). This starts from an alternate
 ; form of Fermat’s Little Theorem, which states that if n is a prime number and
@@ -17,6 +19,8 @@
 ; procedure analogous to fermat-test. Check your procedure by testing various
 ; known primes and non-primes. Hint: One convenient way to make expmod signal is
 ; to have it return 0.
+
+(define (square x) (* x x))
 
 (define (nontrivial-square-root? a n)
   (and (not (= a 1))
