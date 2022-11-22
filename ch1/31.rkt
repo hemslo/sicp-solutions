@@ -1,3 +1,5 @@
+#lang sicp
+
 ; a. The sum procedure is only the simplest of a vast number of similar
 ; abstractions that can be captured as higher-order procedures. Write an
 ; analogous procedure called product that returns the product of the values of a
