@@ -1,3 +1,5 @@
+#lang sicp
+
 ; You can obtain an even more general version of accumulate (Exercise 1.32) by
 ; introducing the notion of a filter on the terms to be combined. That is,
 ; combine only those terms derived from values in the range that satisfy a
@@ -12,7 +14,7 @@
 ; b. the product of all the positive integers less than n that are relatively
 ; prime to n (i.e., all positive integers i < n such that GCD(i,n) = 1).
 
-(load "24.scm")
+(define (square x) (* x x))
 
 (define (filtered-accumulate combiner null-value term a next b filter)
   (define (iter a result)
@@ -23,12 +25,6 @@
 
 (define (identity x) x)
 (define (inc n) (+ n 1))
-
-;a
-(define (sum-of-prime-squares a b)
-  (filtered-accumulate + 0 square a inc b prime?))
-
-;b
 
 (define (gcd a b)
   (if (= b 0)
