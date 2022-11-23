@@ -1,3 +1,5 @@
+#lang sicp
+
 ; Modify fixed-point so that it prints the sequence of approximations it
 ; generates, using the newline and display primitives shown in Exercise 1.22.
 ; Then find a solution to x ^ x = 1000 by finding a fixed point of
