@@ -1,3 +1,5 @@
+#lang sicp
+
 ; In 1737, the Swiss mathematician Leonhard Euler published a memoir De
 ; Fractionibus Continuis, which included a continued fraction expansion for
 ; e − 2, where e is the base of the natural logarithms. In this fraction, the Ni
@@ -5,7 +7,14 @@
 ; Write a program that uses your cont-frac procedure from Exercise 1.37 to
 ; approximate e, based on Euler’s expansion.
 
-(load "37.scm")
+(define (cont-frac n d k)
+  (define (iter i result)
+    (if (= 0 i)
+        result
+        (iter (- i 1)
+              (/ (n i)
+                 (+ (d i) result)))))
+  (iter k 0))
 
 (+ 2 (cont-frac (lambda (i) 1.0)
                 (lambda (i) (if (= 2 (remainder i 3))
