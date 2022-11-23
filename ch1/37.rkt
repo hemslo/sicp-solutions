@@ -1,3 +1,5 @@
+#lang sicp
+
 ; a. An infinite continued fraction is an expression of the form
 ; f = N1/(D1 + N2 / (D2 + N3/ (D3 + ... )))
 ; As an example, one can show that the infinite continued fraction expansion
@@ -38,8 +40,8 @@
 
 (define (cont-frac-recur n d k)
     (define (recur i)
-        (if (= k i)
-            (/ (n k) (n k))
+        (if (> i k)
+            0
             (/ (n i)
                (+ (d i) (recur (+ i 1))))))
     (recur 1))
