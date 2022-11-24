@@ -1,3 +1,5 @@
+#lang sicp
+
 ; If f is a numerical function and n is a positive integer, then we can form the
 ; nth repeated application of f , which is defined to be the function whose
 ; value at x is f(f(...(f(x))...)). For example, if f is the function
@@ -11,9 +13,15 @@
 ; 625
 ; Hint: You may find it convenient to use compose from Exercise 1.42.
 
-(load "42.scm")
+(define (compose f g)
+  (lambda (x)
+    (f (g x))))
 
 (define (repeated f n)
   (if (= n 1)
       f
       (compose f (repeated f (- n 1)))))
+
+(define (square x) (* x x))
+
+((repeated square 2) 5)
