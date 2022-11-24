@@ -1,3 +1,5 @@
+#lang sicp
+
 ; The idea of smoothing a function is an important concept in signal processing.
 ; If f is a function and dx is some small number, then the smoothed version of f
 ; is the function whose value at a point x is the average of f(x − dx), f(x),
@@ -17,7 +19,18 @@
           (f (+ x dx)))
        3)))
 
-(load "43.scm")
+(define (compose f g)
+  (lambda (x)
+    (f (g x))))
+
+(define (repeated f n)
+  (if (= n 1)
+      f
+      (compose f (repeated f (- n 1)))))
 
 (define (n-fold-smoothed f n)
   ((repeated smooth n) f))
+
+(define (cube x) (* x x x))
+
+((n-fold-smoothed cube 10) 2)
