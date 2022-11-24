@@ -1,3 +1,5 @@
+#lang sicp
+
 ; We saw in Section 1.3.3 that attempting to compute square roots by naively
 ; finding a fixed point of y -> x/y does not converge, and that this can be
 ; fixed by average damping. The same method works for finding cube roots as
@@ -27,15 +29,26 @@
   (try first-guess))
 
 (define (average x y)
-   (/ (+ x y) 2))
+  (/ (+ x y) 2))
 
- (define (average-damp f)
-   (lambda (x) (average x (f x))))
+(define (average-damp f)
+  (lambda (x) (average x (f x))))
 
-(load "43.scm")
-
-(define (nth-root-times n times)
+(define (compose f g)
   (lambda (x)
+    (f (g x))))
+
+(define (repeated f n)
+  (if (= n 1)
+      f
+      (compose f (repeated f (- n 1)))))
+
+(define (log2 x)
+  (/ (log x) (log 2)))
+
+(define (nth-root-times n x)
     (fixed-point
-        ((repeated average-damp times) (lambda (y) (/ x (expt y (- n 1)))))
-        1.0)))
+        ((repeated average-damp (floor (log2 x))) (lambda (y) (/ x (expt y (- n 1)))))
+        1.0))
+
+(nth-root-times 5 32)
