@@ -1,3 +1,5 @@
+#lang sicp
+
 ; Several of the numerical methods described in this chapter are instances of an
 ; extremely general computational strategy known as iterative improvement.
 ; Iterative improvement says that, to compute something, we start with an
@@ -21,10 +23,10 @@
 (define (close-enough? v1 v2)
   (< (abs (- v1 v2)) tolerance))
 
-(define (sqrt x)
-  (define (improve guess)
-    (/ (+ guess (/ x guess)) 2))
-  ((iterative-improve close-enough? improve) 1.0))
-
 (define (fixed-point f first-guess)
   ((iterative-improve close-enough? f) first-guess))
+
+(define (sqrt x)
+  (fixed-point (lambda (y) (/ (+ y (/ x y)) 2)) 1.0))
+
+(sqrt 49)
